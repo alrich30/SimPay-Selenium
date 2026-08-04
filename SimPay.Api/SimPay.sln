@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36616.10
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPay", "SimPay\SimPay.csproj", "{5E48975E-6933-4CD4-908D-8B68E2605A64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPay.Application", "..\SimPay.Application\SimPay.Application\SimPay.Application.csproj", "{62AAF43F-3828-83EF-F1F8-3C19CA6EABE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPay.Domain", "..\SimPay.Domain\SimPay.Domain\SimPay.Domain.csproj", "{EDE59D21-DC11-3839-75D9-DEF9ECFC7103}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPay.Infrastructure", "..\SimPay.Infrastructure\SimPay.Infrastructure\SimPay.Infrastructure.csproj", "{507A08F3-7AD3-4F09-AD0E-505BAEC0EE6A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simpay.Tests", "..\Simpay.Tests\Simpay.Tests\Simpay.Tests.csproj", "{2EA02DEB-0924-0B56-E57C-B0DF2B4A1845}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{303E0CAA-373B-45A4-847B-8C3FFBDA7421}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5E48975E-6933-4CD4-908D-8B68E2605A64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E48975E-6933-4CD4-908D-8B68E2605A64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E48975E-6933-4CD4-908D-8B68E2605A64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E48975E-6933-4CD4-908D-8B68E2605A64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62AAF43F-3828-83EF-F1F8-3C19CA6EABE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62AAF43F-3828-83EF-F1F8-3C19CA6EABE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62AAF43F-3828-83EF-F1F8-3C19CA6EABE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62AAF43F-3828-83EF-F1F8-3C19CA6EABE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDE59D21-DC11-3839-75D9-DEF9ECFC7103}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDE59D21-DC11-3839-75D9-DEF9ECFC7103}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDE59D21-DC11-3839-75D9-DEF9ECFC7103}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDE59D21-DC11-3839-75D9-DEF9ECFC7103}.Release|Any CPU.Build.0 = Release|Any CPU
+		{507A08F3-7AD3-4F09-AD0E-505BAEC0EE6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{507A08F3-7AD3-4F09-AD0E-505BAEC0EE6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{507A08F3-7AD3-4F09-AD0E-505BAEC0EE6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{507A08F3-7AD3-4F09-AD0E-505BAEC0EE6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EA02DEB-0924-0B56-E57C-B0DF2B4A1845}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EA02DEB-0924-0B56-E57C-B0DF2B4A1845}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EA02DEB-0924-0B56-E57C-B0DF2B4A1845}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EA02DEB-0924-0B56-E57C-B0DF2B4A1845}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5E48975E-6933-4CD4-908D-8B68E2605A64} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{62AAF43F-3828-83EF-F1F8-3C19CA6EABE1} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{EDE59D21-DC11-3839-75D9-DEF9ECFC7103} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{507A08F3-7AD3-4F09-AD0E-505BAEC0EE6A} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{2EA02DEB-0924-0B56-E57C-B0DF2B4A1845} = {303E0CAA-373B-45A4-847B-8C3FFBDA7421}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FF530B60-4982-4625-B585-60E340F1CD7D}
+	EndGlobalSection
+EndGlobal
