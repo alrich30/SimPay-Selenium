@@ -184,4 +184,37 @@ public sealed class PaymentsPage
                         StringComparison.OrdinalIgnoreCase));
         })!;
     }
+
+    public void ClickDeleteForPayment(string description)
+    {
+        IWebElement row = WaitForPaymentRow(description);
+
+        row.FindElement(By.CssSelector(".delete-button"))
+            .Click();
+    }
+
+    public void AcceptDeleteConfirmation()
+    {
+        WaitForConfirmationAlert().Accept();
+    }
+
+    public void CancelDeleteConfirmation()
+    {
+        WaitForConfirmationAlert().Dismiss();
+    }
+
+    private IAlert WaitForConfirmationAlert()
+    {
+        return _wait.Until(driver =>
+        {
+            try
+            {
+                return driver.SwitchTo().Alert();
+            }
+            catch (NoAlertPresentException)
+            {
+                return null;
+            }
+        })!;
+    }
 }
