@@ -43,6 +43,9 @@ public sealed class PaymentsPage
     private IWebElement PaymentsBody =>
         _driver.FindElement(By.Id("payments-body"));
 
+    private IWebElement RefreshButton =>
+    _driver.FindElement(By.Id("refresh-button"));
+
     public void Open()
     {
         _driver.Navigate().GoToUrl(
@@ -113,5 +116,19 @@ public sealed class PaymentsPage
         return PaymentsBody.Text.Contains(
             description,
             StringComparison.OrdinalIgnoreCase);
+    }
+
+
+    public void RefreshPayments()
+    {
+        RefreshButton.Click();
+    }
+
+    public void WaitForLoginRedirect()
+    {
+        _wait.Until(driver =>
+            driver.Url.Contains(
+                "index.html",
+                StringComparison.OrdinalIgnoreCase));
     }
 }
