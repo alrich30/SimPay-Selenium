@@ -1,0 +1,987 @@
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ <title>Reporte de pruebas de SimPay</title>
+ <link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@c439bdbc7bade3d85af3b90e9e69c30ebc87445f/commons/img/logo.png">
+ <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@c439bdbc7bade3d85af3b90e9e69c30ebc87445f/commons/img/logo.png">
+ <link href="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@78fa5a2421587b8228150e93142e5ba97178e85b/spark/css/spark-style.css" rel="stylesheet" />
+ <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+ <script src="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@78fa5a2421587b8228150e93142e5ba97178e85b/spark/js/jsontree.js"></script>
+ <style></style>
+</head>
+<body class="spa  standard">
+ <div class="app">
+  <div class="layout">
+   <div class="header navbar">
+ <div class="vheader">
+  <div class="nav-logo">
+   <a href="#">
+	 <div class="logo" style="background-image: url('https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@c43b89d03a7c43dae8bb8f0f078bad1997af6b3b/commons/img/logo.png')"></div>
+   </a>
+  </div>
+  <ul class="nav-left">
+   <li class="search-box">
+	<a class="search-toggle" href="#"><i class="search-icon fa fa-search"></i><i class="search-icon-close fa fa-close"></i></a>
+   </li>
+   <li class="search-input">
+    <input id="search-tests" class="form-control" type="text" placeholder="Search...">
+   </li>
+  </ul>
+  <ul class="nav-right">
+   <li class="m-r-10"><a href="#"><span class="badge badge-primary">Pruebas automatizadas con Selenium</span></a></li>
+   <li class="m-r-10">
+    <a href="#"><span class="badge badge-primary">4/8/2026 9:13:12 p. m.</span></a>
+   </li>
+  </ul>
+ </div>
+</div>
+   <div class="side-nav">
+ <div class="side-nav-inner">
+  <ul class="side-nav-menu">
+   <li class="nav-item dropdown" onclick="toggleView('test-view')">
+    <a id="nav-test" class="dropdown-toggle" href="#">
+     <span class="ico"><i class="fa fa-list"></i></span>
+    </a>
+   </li>
+   <li class="nav-item dropdown" onclick="toggleView('dashboard-view')">
+    <a id="nav-dashboard" class="dropdown-toggle" href="#">
+     <span class="ico"><i class="fa fa-bar-chart"></i></span>
+    </a>
+   </li>
+  </ul>
+ </div>
+</div>
+
+   <div class="vcontainer">
+    <div class="main-content">
+     
+
+<div class="test-wrapper row view test-view">
+  <div class="test-list">
+    <div class="test-list-tools">
+      <ul class="tools pull-left">
+        <li><a href="#"><span class="font-size-14">Tests</span></a></li>
+      </ul>
+      <ul class="tools text-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-exclamation-circle"></i></a>
+          <ul id="status-toggle" class="dropdown-menu dropdown-md p-v-0">
+ <a class="dropdown-item" status="pass" href="#"><span>Pass</span><span class="status success"></span></a>             <div class="dropdown-divider"></div>
+            <a status="clear" class="dropdown-item" href="#"><span>Clear</span><span class="pull-right"><i class="fa fa-close"></i></span></a>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="test-list-wrapper scrollable">
+      <ul class="test-list-item">
+        <li class="test-item" status="pass" test-id="1"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">CreatePayment_WithMaximumAllowedAmount_ShouldRegisterPayment</p>
+            <p class="text-sm">
+              <span>9:13:12 p. m.</span> / <span>2876.77 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">CreatePayment_WithMaximumAllowedAmount_ShouldRegisterPayment</h5>
+                  <span class='badge badge-success'>4/8/2026 9:13:12 p. m.</span>
+                  <span class='badge badge-danger'>4/8/2026 9:13:15 p. m.</span>
+                  <span class='badge badge-default'>2876.77 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+  <div class="row mb-3">
+   <div class="col-md-3">
+     <img data-featherlight='Screenshots/CreatePayment_WithMaximumAllowedAmount_ShouldRegisterPayment.png' src="Screenshots/CreatePayment_WithMaximumAllowedAmount_ShouldRegisterPayment.png">
+     <div class='title'>Captura del escenario</div>
+  </div>
+ </div>
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>ago. 04, 2026 21:13:15</td>
+        <td>
+Escenario ejecutado correctamente.        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="2"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">CreatePayment_WithSameAccounts_ShouldShowError</p>
+            <p class="text-sm">
+              <span>9:13:19 p. m.</span> / <span>2199.92 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">CreatePayment_WithSameAccounts_ShouldShowError</h5>
+                  <span class='badge badge-success'>4/8/2026 9:13:19 p. m.</span>
+                  <span class='badge badge-danger'>4/8/2026 9:13:21 p. m.</span>
+                  <span class='badge badge-default'>2199.92 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=2</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+  <div class="row mb-3">
+   <div class="col-md-3">
+     <img data-featherlight='Screenshots/CreatePayment_WithSameAccounts_ShouldShowError.png' src="Screenshots/CreatePayment_WithSameAccounts_ShouldShowError.png">
+     <div class='title'>Captura del escenario</div>
+  </div>
+ </div>
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>ago. 04, 2026 21:13:21</td>
+        <td>
+Escenario ejecutado correctamente.        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="3"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">CreatePayment_WithValidData_ShouldRegisterPayment</p>
+            <p class="text-sm">
+              <span>9:13:21 p. m.</span> / <span>2169.49 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">CreatePayment_WithValidData_ShouldRegisterPayment</h5>
+                  <span class='badge badge-success'>4/8/2026 9:13:21 p. m.</span>
+                  <span class='badge badge-danger'>4/8/2026 9:13:24 p. m.</span>
+                  <span class='badge badge-default'>2169.49 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=3</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+  <div class="row mb-3">
+   <div class="col-md-3">
+     <img data-featherlight='Screenshots/CreatePayment_WithValidData_ShouldRegisterPayment.png' src="Screenshots/CreatePayment_WithValidData_ShouldRegisterPayment.png">
+     <div class='title'>Captura del escenario</div>
+  </div>
+ </div>
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>ago. 04, 2026 21:13:24</td>
+        <td>
+Escenario ejecutado correctamente.        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="4"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">DeletePayment_WhenCancelled_ShouldKeepPayment</p>
+            <p class="text-sm">
+              <span>9:13:24 p. m.</span> / <span>2749.63 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">DeletePayment_WhenCancelled_ShouldKeepPayment</h5>
+                  <span class='badge badge-success'>4/8/2026 9:13:24 p. m.</span>
+                  <span class='badge badge-danger'>4/8/2026 9:13:27 p. m.</span>
+                  <span class='badge badge-default'>2749.63 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=4</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+  <div class="row mb-3">
+   <div class="col-md-3">
+     <img data-featherlight='Screenshots/DeletePayment_WhenCancelled_ShouldKeepPayment.png' src="Screenshots/DeletePayment_WhenCancelled_ShouldKeepPayment.png">
+     <div class='title'>Captura del escenario</div>
+  </div>
+ </div>
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>ago. 04, 2026 21:13:27</td>
+        <td>
+Escenario ejecutado correctamente.        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="5"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">DeletePayment_WhenConfirmed_ShouldRemovePayment</p>
+            <p class="text-sm">
+              <span>9:13:27 p. m.</span> / <span>2242.68 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">DeletePayment_WhenConfirmed_ShouldRemovePayment</h5>
+                  <span class='badge badge-success'>4/8/2026 9:13:27 p. m.</span>
+                  <span class='badge badge-danger'>4/8/2026 9:13:29 p. m.</span>
+                  <span class='badge badge-default'>2242.68 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=5</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+  <div class="row mb-3">
+   <div class="col-md-3">
+     <img data-featherlight='Screenshots/DeletePayment_WhenConfirmed_ShouldRemovePayment.png' src="Screenshots/DeletePayment_WhenConfirmed_ShouldRemovePayment.png">
+     <div class='title'>Captura del escenario</div>
+  </div>
+ </div>
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>ago. 04, 2026 21:13:29</td>
+        <td>
+Escenario ejecutado correctamente.        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="6"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">DeletePayment_WithMaximumDescription_ShouldRemovePayment</p>
+            <p class="text-sm">
+              <span>9:13:29 p. m.</span> / <span>2383.8 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">DeletePayment_WithMaximumDescription_ShouldRemovePayment</h5>
+                  <span class='badge badge-success'>4/8/2026 9:13:29 p. m.</span>
+                  <span class='badge badge-danger'>4/8/2026 9:13:32 p. m.</span>
+                  <span class='badge badge-default'>2383.8 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=6</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+  <div class="row mb-3">
+   <div class="col-md-3">
+     <img data-featherlight='Screenshots/DeletePayment_WithMaximumDescription_ShouldRemovePayment.png' src="Screenshots/DeletePayment_WithMaximumDescription_ShouldRemovePayment.png">
+     <div class='title'>Captura del escenario</div>
+  </div>
+ </div>
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>ago. 04, 2026 21:13:32</td>
+        <td>
+Escenario ejecutado correctamente.        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="7"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">ListPayments_WithoutLogin_ShouldRedirectToLoginPage</p>
+            <p class="text-sm">
+              <span>9:13:32 p. m.</span> / <span>1615.65 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">ListPayments_WithoutLogin_ShouldRedirectToLoginPage</h5>
+                  <span class='badge badge-success'>4/8/2026 9:13:32 p. m.</span>
+                  <span class='badge badge-danger'>4/8/2026 9:13:33 p. m.</span>
+                  <span class='badge badge-default'>1615.65 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=7</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+  <div class="row mb-3">
+   <div class="col-md-3">
+     <img data-featherlight='Screenshots/ListPayments_WithoutLogin_ShouldRedirectToLoginPage.png' src="Screenshots/ListPayments_WithoutLogin_ShouldRedirectToLoginPage.png">
+     <div class='title'>Captura del escenario</div>
+  </div>
+ </div>
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>ago. 04, 2026 21:13:33</td>
+        <td>
+Escenario ejecutado correctamente.        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="8"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">ListPayments_WithRegisteredPayment_ShouldDisplayPayment</p>
+            <p class="text-sm">
+              <span>9:13:34 p. m.</span> / <span>2162.53 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">ListPayments_WithRegisteredPayment_ShouldDisplayPayment</h5>
+                  <span class='badge badge-success'>4/8/2026 9:13:34 p. m.</span>
+                  <span class='badge badge-danger'>4/8/2026 9:13:36 p. m.</span>
+                  <span class='badge badge-default'>2162.53 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=8</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+  <div class="row mb-3">
+   <div class="col-md-3">
+     <img data-featherlight='Screenshots/ListPayments_WithRegisteredPayment_ShouldDisplayPayment.png' src="Screenshots/ListPayments_WithRegisteredPayment_ShouldDisplayPayment.png">
+     <div class='title'>Captura del escenario</div>
+  </div>
+ </div>
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>ago. 04, 2026 21:13:36</td>
+        <td>
+Escenario ejecutado correctamente.        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="9"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">ListPayments_WithSeveralPayments_ShouldDisplayAllPayments</p>
+            <p class="text-sm">
+              <span>9:13:36 p. m.</span> / <span>4986.34 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">ListPayments_WithSeveralPayments_ShouldDisplayAllPayments</h5>
+                  <span class='badge badge-success'>4/8/2026 9:13:36 p. m.</span>
+                  <span class='badge badge-danger'>4/8/2026 9:13:41 p. m.</span>
+                  <span class='badge badge-default'>4986.34 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=9</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+  <div class="row mb-3">
+   <div class="col-md-3">
+     <img data-featherlight='Screenshots/ListPayments_WithSeveralPayments_ShouldDisplayAllPayments.png' src="Screenshots/ListPayments_WithSeveralPayments_ShouldDisplayAllPayments.png">
+     <div class='title'>Captura del escenario</div>
+  </div>
+ </div>
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>ago. 04, 2026 21:13:41</td>
+        <td>
+Escenario ejecutado correctamente.        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="10"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Login_WithEmptyFields_ShouldRemainOnLoginPage</p>
+            <p class="text-sm">
+              <span>9:13:41 p. m.</span> / <span>1683.7 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">Login_WithEmptyFields_ShouldRemainOnLoginPage</h5>
+                  <span class='badge badge-success'>4/8/2026 9:13:41 p. m.</span>
+                  <span class='badge badge-danger'>4/8/2026 9:13:43 p. m.</span>
+                  <span class='badge badge-default'>1683.7 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=10</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+  <div class="row mb-3">
+   <div class="col-md-3">
+     <img data-featherlight='Screenshots/Login_WithEmptyFields_ShouldRemainOnLoginPage.png' src="Screenshots/Login_WithEmptyFields_ShouldRemainOnLoginPage.png">
+     <div class='title'>Captura del escenario</div>
+  </div>
+ </div>
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>ago. 04, 2026 21:13:43</td>
+        <td>
+Escenario ejecutado correctamente.        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="11"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Login_WithInvalidCredentials_ShouldShowError</p>
+            <p class="text-sm">
+              <span>9:13:43 p. m.</span> / <span>1732.37 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">Login_WithInvalidCredentials_ShouldShowError</h5>
+                  <span class='badge badge-success'>4/8/2026 9:13:43 p. m.</span>
+                  <span class='badge badge-danger'>4/8/2026 9:13:45 p. m.</span>
+                  <span class='badge badge-default'>1732.37 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=11</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+  <div class="row mb-3">
+   <div class="col-md-3">
+     <img data-featherlight='Screenshots/Login_WithInvalidCredentials_ShouldShowError.png' src="Screenshots/Login_WithInvalidCredentials_ShouldShowError.png">
+     <div class='title'>Captura del escenario</div>
+  </div>
+ </div>
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>ago. 04, 2026 21:13:45</td>
+        <td>
+Escenario ejecutado correctamente.        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="12"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">Login_WithValidCredentials_ShouldOpenPaymentsPage</p>
+            <p class="text-sm">
+              <span>9:13:45 p. m.</span> / <span>2164.72 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">Login_WithValidCredentials_ShouldOpenPaymentsPage</h5>
+                  <span class='badge badge-success'>4/8/2026 9:13:45 p. m.</span>
+                  <span class='badge badge-danger'>4/8/2026 9:13:47 p. m.</span>
+                  <span class='badge badge-default'>2164.72 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=12</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+  <div class="row mb-3">
+   <div class="col-md-3">
+     <img data-featherlight='Screenshots/Login_WithValidCredentials_ShouldOpenPaymentsPage.png' src="Screenshots/Login_WithValidCredentials_ShouldOpenPaymentsPage.png">
+     <div class='title'>Captura del escenario</div>
+  </div>
+ </div>
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>ago. 04, 2026 21:13:47</td>
+        <td>
+Escenario ejecutado correctamente.        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="13"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">UpdatePayment_WithMaximumDescription_ShouldUpdatePayment</p>
+            <p class="text-sm">
+              <span>9:13:47 p. m.</span> / <span>3457.03 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">UpdatePayment_WithMaximumDescription_ShouldUpdatePayment</h5>
+                  <span class='badge badge-success'>4/8/2026 9:13:47 p. m.</span>
+                  <span class='badge badge-danger'>4/8/2026 9:13:51 p. m.</span>
+                  <span class='badge badge-default'>3457.03 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=13</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+  <div class="row mb-3">
+   <div class="col-md-3">
+     <img data-featherlight='Screenshots/UpdatePayment_WithMaximumDescription_ShouldUpdatePayment.png' src="Screenshots/UpdatePayment_WithMaximumDescription_ShouldUpdatePayment.png">
+     <div class='title'>Captura del escenario</div>
+  </div>
+ </div>
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>ago. 04, 2026 21:13:51</td>
+        <td>
+Escenario ejecutado correctamente.        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="14"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">UpdatePayment_WithValidData_ShouldUpdatePayment</p>
+            <p class="text-sm">
+              <span>9:13:51 p. m.</span> / <span>2948.08 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">UpdatePayment_WithValidData_ShouldUpdatePayment</h5>
+                  <span class='badge badge-success'>4/8/2026 9:13:51 p. m.</span>
+                  <span class='badge badge-danger'>4/8/2026 9:13:54 p. m.</span>
+                  <span class='badge badge-default'>2948.08 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=14</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+  <div class="row mb-3">
+   <div class="col-md-3">
+     <img data-featherlight='Screenshots/UpdatePayment_WithValidData_ShouldUpdatePayment.png' src="Screenshots/UpdatePayment_WithValidData_ShouldUpdatePayment.png">
+     <div class='title'>Captura del escenario</div>
+  </div>
+ </div>
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>ago. 04, 2026 21:13:54</td>
+        <td>
+Escenario ejecutado correctamente.        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+        <li class="test-item" status="pass" test-id="15"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">UpdatePayment_WithZeroAmount_ShouldShowValidationError</p>
+            <p class="text-sm">
+              <span>9:13:54 p. m.</span> / <span>3003.54 ms</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+            <div class="detail-head">
+              <div class="p-v-10">
+                <div class="info">
+                  <h5 class="test-status text-pass">UpdatePayment_WithZeroAmount_ShouldShowValidationError</h5>
+                  <span class='badge badge-success'>4/8/2026 9:13:54 p. m.</span>
+                  <span class='badge badge-danger'>4/8/2026 9:13:57 p. m.</span>
+                  <span class='badge badge-default'>3003.54 ms</span>
+                  &middot; <span class='uri-anchor badge badge-default'>#test-id=15</span>
+                  <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+                  <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+                  <span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+                </div>
+              </div>
+            </div>
+
+
+  <div class="row mb-3">
+   <div class="col-md-3">
+     <img data-featherlight='Screenshots/UpdatePayment_WithZeroAmount_ShouldShowValidationError.png' src="Screenshots/UpdatePayment_WithZeroAmount_ShouldShowValidationError.png">
+     <div class='title'>Captura del escenario</div>
+  </div>
+ </div>
+
+<div class="detail-body mt-4">
+
+
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>ago. 04, 2026 21:13:57</td>
+        <td>
+Escenario ejecutado correctamente.        </td>
+      </tr>
+  </tbody>
+</table></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="test-content scrollable">
+    <div class="test-content-tools">
+      <ul><li><a class="back-to-test" href="#"><i class="fa fa-arrow-left"></i></a></li></ul>
+    </div>
+    <div class="test-content-detail"><div class="detail-body"></div></div>
+  </div>
+</div>
+
+     
+
+<div class="container-fluid p-4 view dashboard-view">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card"><div class="card-body">
+          <p class="m-b-0">Started</p>
+          <h3>4/8/2026 9:13:12 p. m.</h3>
+      </div></div>
+    </div>
+    <div class="col-md-3">
+      <div class="card"><div class="card-body">
+          <p class="m-b-0">Ended</p>
+          <h3>4/8/2026 9:13:57 p. m.</h3>
+      </div></div>
+    </div>
+    <div class="col-md-3">
+      <div class="card"><div class="card-body">
+          <p class="m-b-0 text-pass">Tests Passed</p>
+          <h3>15</h3>
+      </div></div>
+    </div>
+    <div class="col-md-3">
+      <div class="card"><div class="card-body">
+          <p class="m-b-0 text-fail">Tests Failed</p>
+          <h3>0</h3>
+      </div></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h6 class="card-title">Tests</h6>
+        </div>
+        <div class="card-body">
+          <div class="">
+            <canvas id='parent-analysis' width='115' height='90'></canvas>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div><small data-tooltip='1%'>
+            <b>15</b> tests passed
+            </small>
+          </div>
+          <div>
+            <small data-tooltip='0%'><b>0</b> tests failed, 
+            <b>0</b> skipped, <b data-tooltip='0%'>0</b> others
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h6 class="card-title">Log events</h6>
+        </div>
+        <div class="card-body">
+          <div class="">
+            <canvas id='events-analysis' width='115' height='90'></canvas>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div><small data-tooltip='1%'><b>15</b> events passed</small></div>
+          <div>
+            <small data-tooltip='0%'><b>0</b> events failed, 
+            <b data-tooltip='%'>0</b> others
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row"><div class="col-md-12">
+    <div class="card"><div class="card-header"><p>Timeline</p></div>
+      <div class="card-body pt-0"><div>
+        <canvas id="timeline" height="120"></canvas>
+      </div></div>
+    </div>
+  </div></div>
+  <script>
+	var timeline = { "CreatePayment_WithMaximumAllowedAmount_ShouldRegisterPayment":2876.7683,"CreatePayment_WithSameAccounts_ShouldShowError":2199.9214,"CreatePayment_WithValidData_ShouldRegisterPayment":2169.4892,"DeletePayment_WhenCancelled_ShouldKeepPayment":2749.6288,"DeletePayment_WhenConfirmed_ShouldRemovePayment":2242.6837,"DeletePayment_WithMaximumDescription_ShouldRemovePayment":2383.804,"ListPayments_WithoutLogin_ShouldRedirectToLoginPage":1615.6451,"ListPayments_WithRegisteredPayment_ShouldDisplayPayment":2162.5336,"ListPayments_WithSeveralPayments_ShouldDisplayAllPayments":4986.3373,"Login_WithEmptyFields_ShouldRemainOnLoginPage":1683.6989,"Login_WithInvalidCredentials_ShouldShowError":1732.3726,"Login_WithValidCredentials_ShouldOpenPaymentsPage":2164.715,"UpdatePayment_WithMaximumDescription_ShouldUpdatePayment":3457.0259,"UpdatePayment_WithValidData_ShouldUpdatePayment":2948.0788,"UpdatePayment_WithZeroAmount_ShouldShowValidationError":3003.5354 };
+  </script>
+  <div class="row">
+      <div class="col-md-4 sysenv-container">
+      <div class="card">
+        <div class="card-header"><p>System/Environment</p></div>
+        <div class="card-body pb-0 pt-0"><table class="table table-sm table-bordered">
+          <thead><tr class="bg-gray"><th>Name</th><th>Value</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Aplicación</td>
+              <td>SimPay</td>
+            </tr>
+            <tr>
+              <td>Navegador</td>
+              <td>Google Chrome</td>
+            </tr>
+            <tr>
+              <td>Framework</td>
+              <td>Selenium con NUnit</td>
+            </tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  var statusGroup = {
+    parentCount: 15,
+    childCount: 0,
+    grandChildCount: 0,
+    eventsCount: 15,
+
+passParent:15,failParent:0,warningParent:0,skipParent:0,    
+passChild:0,failChild:0,warningChild:0,skipChild:0,infoChild:0,    
+passGrandChild:0,failGrandChild:0,warningGrandChild:0,skipGrandChild:0,infoGrandChild:0,    
+passEvents:15,failEvents:0,warningEvents:0,skipEvents:0,infoEvents:0,  };
+</script>
+
+    </div>
+   </div>
+  </div>
+ </div>
+ <script src="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@c439bdbc7bade3d85af3b90e9e69c30ebc87445f/spark/js/spark-script.js"></script>
+<script type='text/javascript'></script>
+</body>
+</html>

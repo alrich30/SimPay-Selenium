@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{303E0CAA-373B-45A4-847B-8C3FFBDA7421}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimPay.SeleniumTests", "..\Simpay.Tests\SimPay.SeleniumTests\SimPay.SeleniumTests.csproj", "{4E987871-735A-41C3-B430-6087C4F73045}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{2EA02DEB-0924-0B56-E57C-B0DF2B4A1845}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2EA02DEB-0924-0B56-E57C-B0DF2B4A1845}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2EA02DEB-0924-0B56-E57C-B0DF2B4A1845}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E987871-735A-41C3-B430-6087C4F73045}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E987871-735A-41C3-B430-6087C4F73045}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E987871-735A-41C3-B430-6087C4F73045}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E987871-735A-41C3-B430-6087C4F73045}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
