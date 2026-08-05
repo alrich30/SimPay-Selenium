@@ -42,7 +42,18 @@ public abstract class SeleniumTestBase
         {
             string screenshotPath = CaptureScreenshot();
 
-            _extentTest.AddScreenCaptureFromPath(screenshotPath);
+            string relativeScreenshotPath = Path.Combine(
+                "Screenshots",
+                Path.GetFileName(screenshotPath))
+                .Replace('\\', '/');
+
+            _extentTest.AddScreenCaptureFromPath(
+                relativeScreenshotPath,
+                "Captura del escenario");
+
+            TestContext.AddTestAttachment(
+                screenshotPath,
+                "Captura automática del escenario");
 
             TestStatus status =
                 TestContext.CurrentContext.Result.Outcome.Status;
