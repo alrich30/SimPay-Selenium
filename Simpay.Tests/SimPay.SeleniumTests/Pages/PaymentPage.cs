@@ -131,4 +131,57 @@ public sealed class PaymentsPage
                 "index.html",
                 StringComparison.OrdinalIgnoreCase));
     }
+
+    public void StartEditingPayment(string description)
+    {
+        IWebElement row = WaitForPaymentRow(description);
+
+        row.FindElement(By.CssSelector(".edit-button"))
+            .Click();
+
+        _wait.Until(driver =>
+            driver.FindElement(By.Id("form-title")).Text ==
+            "Actualizar pago");
+    }
+
+    public void CompleteEditForm(
+    string amount,
+    string currency,
+    string description)
+    {
+        AmountInput.Clear();
+        AmountInput.SendKeys(amount);
+
+        CurrencyInput.Clear();
+        CurrencyInput.SendKeys(currency);
+
+        DescriptionInput.Clear();
+        DescriptionInput.SendKeys(description);
+    }
+
+    public bool WaitForPaymentNotInTable(string description)
+    {
+        return _wait.Until(driver =>
+        {
+            string tableContent =
+                driver.FindElement(By.Id("payments-body")).Text;
+
+            return !tableContent.Contains(
+                description,
+                StringComparison.OrdinalIgnoreCase);
+        });
+    }
+
+    private IWebElement WaitForPaymentRow(string description)
+    {
+        return _wait.Until(driver =>
+        {
+            return driver
+                .FindElements(By.CssSelector("#payments-body tr"))
+                .FirstOrDefault(row =>
+                    row.Text.Contains(
+                        description,
+                        StringComparison.OrdinalIgnoreCase));
+        })!;
+    }
 }
