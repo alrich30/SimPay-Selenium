@@ -17,9 +17,69 @@ public sealed class PaymentsController : ControllerBase
 
     [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<Payment>), StatusCodes.Status200OK)]
-    public ActionResult<IReadOnlyCollection<Payment>> GetAll()
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public ActionResult<IReadOnlyCollection<Payment>> GetAll(
+    [FromQuery] PaymentStatus? status,
+    [FromQuery] string? currency,
+    [FromQuery] decimal? minAmount,
+    [FromQuery] decimal? maxAmount,
+    [FromQuery] DateTime? fromDate,
+    [FromQuery] DateTime? toDate)
     {
-        var payments = _paymentRepository.GetAll();
+        if (minAmount.HasValue && minAmount.Value < 0)
+        {
+            return BadRequest(new
+            {
+                message = "El monto mínimo no puede ser negativo."
+            });
+        }
+
+        if (maxAmount.HasValue && maxAmount.Value < 0)
+        {
+            return BadRequest(new
+            {
+                message = "El monto máximo no puede ser negativo."
+            });
+        }
+
+        if (minAmount.HasValue &&
+            maxAmount.HasValue &&
+            minAmount.Value > maxAmount.Value)
+        {
+            return BadRequest(new
+            {
+                message = "El monto mínimo no puede superar el monto máximo."
+            });
+        }
+
+        if (fromDate.HasValue &&
+            toDate.HasValue &&
+            fromDate.Value.Date > toDate.Value.Date)
+        {
+            return BadRequest(new
+            {
+                message = "La fecha inicial no puede ser posterior a la fecha final."
+            });
+        }
+
+        if (!string.IsNullOrWhiteSpace(currency) &&
+            currency.Trim().Length != 3)
+        {
+            return BadRequest(new
+            {
+                message = "La moneda debe contener exactamente tres caracteres."
+            });
+        }
+
+        var query = new PaymentQuery(
+            status,
+            currency,
+            minAmount,
+            maxAmount,
+            fromDate,
+            toDate);
+
+        var payments = _paymentRepository.Search(query);
 
         return Ok(payments);
     }
@@ -119,6 +179,4 @@ public sealed class PaymentsController : ControllerBase
             new { id = payment.Id },
             payment);
         }
-
-
 }

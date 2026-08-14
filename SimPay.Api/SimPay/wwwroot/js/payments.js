@@ -21,6 +21,17 @@ const cancelButton = document.getElementById("cancel-button");
 const refreshButton = document.getElementById("refresh-button");
 const logoutButton = document.getElementById("logout-button");
 
+const filterForm = document.getElementById("filter-form");
+const filterStatus = document.getElementById("filter-status");
+const filterCurrency = document.getElementById("filter-currency");
+const filterMinAmount = document.getElementById("filter-min-amount");
+const filterMaxAmount = document.getElementById("filter-max-amount");
+const filterFromDate = document.getElementById("filter-from-date");
+const filterToDate = document.getElementById("filter-to-date");
+const filterMessage = document.getElementById("filter-message");
+const clearFiltersButton =
+    document.getElementById("clear-filters-button");
+
 let payments = [];
 
 let messageTimer;
@@ -33,12 +44,14 @@ refreshButton.addEventListener("click", () => {
     loadPayments();
 });
 logoutButton.addEventListener("click", logout);
+filterForm.addEventListener("submit", applyFilters);
+clearFiltersButton.addEventListener("click", clearFilters);
 
 async function loadPayments() {
-    //clearMessage();
+    clearFilterMessage();
 
     try {
-        const response = await fetch("/api/Payments");
+        const response = await fetch(buildPaymentsUrl());
 
         if (!response.ok) {
             throw new Error(await getErrorMessage(response));
@@ -47,8 +60,92 @@ async function loadPayments() {
         payments = await response.json();
         renderPayments();
     } catch (error) {
-        showMessage(error.message, "error");
+        showFilterMessage(error.message, "error");
     }
+}
+
+function buildPaymentsUrl() {
+    const parameters = new URLSearchParams();
+
+    if (filterStatus.value) {
+        parameters.set("status", filterStatus.value);
+    }
+
+    if (filterCurrency.value.trim()) {
+        parameters.set(
+            "currency",
+            filterCurrency.value.trim().toUpperCase()
+        );
+    }
+
+    if (filterMinAmount.value) {
+        parameters.set("minAmount", filterMinAmount.value);
+    }
+
+    if (filterMaxAmount.value) {
+        parameters.set("maxAmount", filterMaxAmount.value);
+    }
+
+    if (filterFromDate.value) {
+        parameters.set("fromDate", filterFromDate.value);
+    }
+
+    if (filterToDate.value) {
+        parameters.set("toDate", filterToDate.value);
+    }
+
+    const queryString = parameters.toString();
+
+    return queryString
+        ? `/api/Payments?${queryString}`
+        : "/api/Payments";
+}
+
+function applyFilters(event) {
+    event.preventDefault();
+
+    const minAmount = Number(filterMinAmount.value);
+    const maxAmount = Number(filterMaxAmount.value);
+
+    if (filterMinAmount.value &&
+        filterMaxAmount.value &&
+        minAmount > maxAmount) {
+        showFilterMessage(
+            "El monto mínimo no puede superar el monto máximo.",
+            "error"
+        );
+
+        return;
+    }
+
+    if (filterFromDate.value &&
+        filterToDate.value &&
+        filterFromDate.value > filterToDate.value) {
+        showFilterMessage(
+            "La fecha inicial no puede ser posterior a la fecha final.",
+            "error"
+        );
+
+        return;
+    }
+
+    loadPayments();
+}
+
+function clearFilters() {
+    filterForm.reset();
+    clearFilterMessage();
+    loadPayments();
+}
+
+function showFilterMessage(text, type) {
+    filterMessage.textContent = text;
+    filterMessage.className = `message ${type}`;
+}
+
+function clearFilterMessage() {
+    filterMessage.textContent = "";
+    filterMessage.className = "message";
 }
 
 async function savePayment(event) {
