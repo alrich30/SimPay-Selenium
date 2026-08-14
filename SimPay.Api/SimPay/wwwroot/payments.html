@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SimPay - Gestión de pagos</title>
-    <link rel="stylesheet" href="/css/styles.css?v=2">
+    <link rel="stylesheet" href="/css/styles.css?v=3">
 </head>
 <body>
     <header class="app-header">
@@ -160,6 +160,28 @@
                     </button>
                 </div>
             </form>
+
+            <div class="statistics-grid" aria-label="Resumen de pagos">
+                <article class="statistic-card">
+                    <span>Total mostrado</span>
+                    <strong id="total-payments">0</strong>
+                </article>
+
+                <article class="statistic-card pending">
+                    <span>Pendientes</span>
+                    <strong id="pending-payments">0</strong>
+                </article>
+
+                <article class="statistic-card completed">
+                    <span>Completados</span>
+                    <strong id="completed-payments">0</strong>
+                </article>
+
+                <article class="statistic-card rejected">
+                    <span>Rechazados</span>
+                    <strong id="rejected-payments">0</strong>
+                </article>
+            </div>
 
             <div class="table-container">
                 <table id="payments-table">

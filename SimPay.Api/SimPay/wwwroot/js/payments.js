@@ -29,8 +29,12 @@ const filterMaxAmount = document.getElementById("filter-max-amount");
 const filterFromDate = document.getElementById("filter-from-date");
 const filterToDate = document.getElementById("filter-to-date");
 const filterMessage = document.getElementById("filter-message");
-const clearFiltersButton =
-    document.getElementById("clear-filters-button");
+const clearFiltersButton = document.getElementById("clear-filters-button");
+
+const totalPayments = document.getElementById("total-payments");
+const pendingPayments = document.getElementById("pending-payments");
+const completedPayments = document.getElementById("completed-payments");
+const rejectedPayments = document.getElementById("rejected-payments");
 
 let payments = [];
 
@@ -211,6 +215,8 @@ function renderPayments() {
     paymentsBody.replaceChildren();
     emptyMessage.classList.toggle("hidden", payments.length > 0);
 
+    updateStatistics();
+
     for (const payment of payments) {
         const row = document.createElement("tr");
         row.dataset.paymentId = payment.id;
@@ -248,6 +254,22 @@ function renderPayments() {
         row.appendChild(actionsCell);
         paymentsBody.appendChild(row);
     }
+}
+
+function updateStatistics() {
+    totalPayments.textContent = payments.length;
+
+    pendingPayments.textContent = payments.filter(
+        payment => payment.status === 0
+    ).length;
+
+    completedPayments.textContent = payments.filter(
+        payment => payment.status === 1
+    ).length;
+
+    rejectedPayments.textContent = payments.filter(
+        payment => payment.status === 2
+    ).length;
 }
 
 function editPayment(payment) {
