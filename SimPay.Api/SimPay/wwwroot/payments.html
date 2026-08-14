@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SimPay - Gestión de pagos</title>
-    <link rel="stylesheet" href="/css/styles.css?v=3">
+    <link rel="stylesheet" href="/css/styles.css?v=4">
 </head>
 <body>
     <header class="app-header">
@@ -93,9 +93,17 @@
             <div class="section-heading">
                 <h2>Pagos registrados</h2>
 
-                <button id="refresh-button" class="secondary-button" type="button">
-                    Actualizar lista
-                </button>
+                <div class="heading-actions">
+                    <button id="export-csv-button" type="button">
+                        Exportar CSV
+                    </button>
+
+                    <button id="refresh-button"
+                            class="secondary-button"
+                            type="button">
+                        Actualizar lista
+                    </button>
+                </div>
             </div>
 
             <form id="filter-form" class="filter-form">
@@ -206,6 +214,6 @@
         </section>
     </main>
 
-    <script src="/js/payments.js"></script>
+    <script src="/js/payments.js?v=2"></script>
 </body>
 </html>

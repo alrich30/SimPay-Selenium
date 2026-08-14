@@ -293,6 +293,15 @@ th {
         border-left-color: #d92d20;
     }
 
+.heading-actions {
+    display: flex;
+    gap: 10px;
+}
+
+    .heading-actions button {
+        width: auto;
+    }
+
 
 @media (max-width: 1000px) {
     .filter-form .form-grid {
@@ -331,4 +340,12 @@ th {
     .statistics-grid {
         grid-template-columns: 1fr;
     }
+
+    .heading-actions {
+        flex-direction: column;
+    }
+
+        .heading-actions button {
+            width: 100%;
+        }
 }

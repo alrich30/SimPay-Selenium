@@ -36,6 +36,8 @@ const pendingPayments = document.getElementById("pending-payments");
 const completedPayments = document.getElementById("completed-payments");
 const rejectedPayments = document.getElementById("rejected-payments");
 
+const exportCsvButton = document.getElementById("export-csv-button");
+
 let payments = [];
 
 let messageTimer;
@@ -50,6 +52,7 @@ refreshButton.addEventListener("click", () => {
 logoutButton.addEventListener("click", logout);
 filterForm.addEventListener("submit", applyFilters);
 clearFiltersButton.addEventListener("click", clearFilters);
+exportCsvButton.addEventListener("click", exportPaymentsToCsv);
 
 async function loadPayments() {
     clearFilterMessage();
@@ -216,6 +219,7 @@ function renderPayments() {
     emptyMessage.classList.toggle("hidden", payments.length > 0);
 
     updateStatistics();
+    exportCsvButton.disabled = payments.length === 0;
 
     for (const payment of payments) {
         const row = document.createElement("tr");
@@ -254,6 +258,76 @@ function renderPayments() {
         row.appendChild(actionsCell);
         paymentsBody.appendChild(row);
     }
+}
+
+function exportPaymentsToCsv() {
+    if (payments.length === 0) {
+        showFilterMessage(
+            "No existen pagos para exportar.",
+            "error"
+        );
+
+        return;
+    }
+
+    const headers = [
+        "Id",
+        "Cuenta de origen",
+        "Cuenta de destino",
+        "Monto",
+        "Moneda",
+        "Descripción",
+        "Estado",
+        "Fecha de creación"
+    ];
+
+    const rows = payments.map(payment => [
+        payment.id,
+        payment.sourceAccountId,
+        payment.destinationAccountId,
+        payment.amount,
+        payment.currency,
+        payment.description ?? "",
+        getStatusName(payment.status),
+        payment.createdAtUtc
+    ]);
+
+    const csvContent = [headers, ...rows]
+        .map(row => row.map(escapeCsvValue).join(","))
+        .join("\r\n");
+
+    const blob = new Blob(
+        ["\uFEFF", csvContent],
+        { type: "text/csv;charset=utf-8;" }
+    );
+
+    const url = URL.createObjectURL(blob);
+    const downloadLink = document.createElement("a");
+    const currentDate = new Date().toISOString().slice(0, 10);
+
+    downloadLink.href = url;
+    downloadLink.download = `simpay-pagos-${currentDate}.csv`;
+
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    downloadLink.remove();
+
+    URL.revokeObjectURL(url);
+
+    showFilterMessage(
+        `Se exportaron ${payments.length} pagos correctamente.`,
+        "success"
+    );
+}
+
+function escapeCsvValue(value) {
+    let text = String(value ?? "");
+
+    if (/^[=+\-@]/.test(text)) {
+        text = `'${text}`;
+    }
+
+    return `"${text.replaceAll('"', '""')}"`;
 }
 
 function updateStatistics() {
