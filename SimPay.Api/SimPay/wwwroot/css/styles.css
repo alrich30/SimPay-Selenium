@@ -1,4 +1,4 @@
-﻿n* {
+﻿* {
     box-sizing: border-box;
 }
 
@@ -49,7 +49,8 @@ label {
     font-weight: 600;
 }
 
-input {
+input,
+select {
     width: 100%;
     padding: 11px 12px;
     border: 1px solid #cbd5e1;
@@ -57,7 +58,8 @@ input {
     font-size: 16px;
 }
 
-    input:focus {
+    input:focus,
+    select:focus  {
         border-color: #155eef;
         outline: 2px solid rgba(21, 94, 239, 0.15);
     }
@@ -226,12 +228,100 @@ th {
     color: #067647;
 }
 
+.filter-form {
+    margin-bottom: 24px;
+    padding: 20px;
+    border: 1px solid #dbe3ef;
+    border-radius: 10px;
+    background: #f8fafc;
+}
+
+    .filter-form .form-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .filter-form .form-group {
+        margin-bottom: 16px;
+    }
+
+    .filter-form .form-actions {
+        padding-top: 2px;
+    }
+
+    #filter-message {
+        margin-bottom: 8px;
+    }
+
+
+.statistics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 24px;
+}
+
+.statistic-card {
+    padding: 18px;
+    border-left: 5px solid #155eef;
+    border-radius: 9px;
+    background: #f8fafc;
+    box-shadow: 0 2px 8px rgba(23, 32, 51, 0.08);
+}
+
+    .statistic-card span {
+        display: block;
+        margin-bottom: 8px;
+        color: #667085;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .statistic-card strong {
+        color: #172033;
+        font-size: 28px;
+    }
+
+    .statistic-card.pending {
+        border-left-color: #f79009;
+    }
+
+    .statistic-card.completed {
+        border-left-color: #079455;
+    }
+
+    .statistic-card.rejected {
+        border-left-color: #d92d20;
+    }
+
+.heading-actions {
+    display: flex;
+    gap: 10px;
+}
+
+    .heading-actions button {
+        width: auto;
+    }
+
+
+@media (max-width: 1000px) {
+    .filter-form .form-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .statistics-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
 @media (max-width: 760px) {
     .app-header,
     .section-heading,
     .form-actions {
         align-items: stretch;
         flex-direction: column;
+    }
+
+    .filter-form .form-grid {
+        grid-template-columns: 1fr;
     }
 
     .form-grid {
@@ -247,4 +337,15 @@ th {
     .form-actions button {
         width: 100%;
     }
+    .statistics-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .heading-actions {
+        flex-direction: column;
+    }
+
+        .heading-actions button {
+            width: 100%;
+        }
 }

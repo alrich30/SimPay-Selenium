@@ -13,6 +13,7 @@ public abstract class SeleniumTestBase
 
     protected IWebDriver Driver { get; private set; } = null!;
     protected WebDriverWait Wait { get; private set; } = null!;
+    protected string DownloadDirectory { get; private set; } = null!;
 
     private ExtentTest _extentTest = null!;
 
@@ -22,10 +23,33 @@ public abstract class SeleniumTestBase
         _extentTest = ExtentReportManager.CreateTest(
             TestContext.CurrentContext.Test.Name);
 
+        DownloadDirectory = Path.Combine(
+        Path.GetTempPath(),
+        "SimPaySeleniumDownloads",
+        Guid.NewGuid().ToString("N"));
+
+        Directory.CreateDirectory(DownloadDirectory);
+
         var options = new ChromeOptions
         {
             AcceptInsecureCertificates = true
         };
+
+        options.AddUserProfilePreference(
+        "download.default_directory",
+        DownloadDirectory);
+
+        options.AddUserProfilePreference(
+            "download.prompt_for_download",
+            false);
+
+        options.AddUserProfilePreference(
+            "download.directory_upgrade",
+            true);
+
+        options.AddUserProfilePreference(
+            "safebrowsing.enabled",
+            true);
 
         Driver = new ChromeDriver(options);
         Driver.Manage().Window.Maximize();
@@ -40,6 +64,7 @@ public abstract class SeleniumTestBase
     {
         try
         {
+
             string screenshotPath = CaptureScreenshot();
 
             string relativeScreenshotPath = Path.Combine(
@@ -72,16 +97,57 @@ public abstract class SeleniumTestBase
                 _extentTest.Skip("La prueba no fue completada.");
             }
         }
+
         finally
         {
             Driver?.Quit();
             Driver?.Dispose();
             ExtentReportManager.Flush();
+
+            try
+            {
+                if (Directory.Exists(DownloadDirectory))
+                {
+                    Directory.Delete(
+                        DownloadDirectory,
+                        recursive: true);
+                }
+            }
+            catch (IOException)
+            {
+                // Chrome puede tardar brevemente en liberar la descarga.
+            }
+            catch (UnauthorizedAccessException)
+            {
+                // La carpeta puede continuar bloqueada temporalmente.
+            }
         }
     }
 
-    private string CaptureScreenshot()
+    protected string WaitForDownloadedCsv()
     {
+        return Wait.Until(_ =>
+        {
+            string? csvFile = Directory
+                .GetFiles(DownloadDirectory, "*.csv")
+                .FirstOrDefault();
+
+            bool downloadInProgress = Directory
+                .GetFiles(DownloadDirectory, "*.crdownload")
+                .Any();
+
+            if (csvFile is null ||
+                downloadInProgress ||
+                new FileInfo(csvFile).Length == 0)
+            {
+                return null;
+            }
+
+            return csvFile;
+        })!;
+    }
+    private string CaptureScreenshot()
+        {
         string testName = TestContext.CurrentContext.Test.Name;
 
         foreach (char invalidCharacter in Path.GetInvalidFileNameChars())

@@ -28,6 +28,57 @@ public sealed class InMemoryPaymentRepository : IPaymentRepository
             .ToArray();
     }
 
+    public IReadOnlyCollection<Payment> Search(PaymentQuery query)
+    {
+        IEnumerable<Payment> filteredPayments = _payments.Values;
+
+        if (query.Status.HasValue)
+        {
+            filteredPayments = filteredPayments.Where(
+                payment => payment.Status == query.Status.Value);
+        }
+
+        if (!string.IsNullOrWhiteSpace(query.Currency))
+        {
+            var normalizedCurrency = query.Currency.Trim().ToUpperInvariant();
+
+            filteredPayments = filteredPayments.Where(
+                payment => payment.Currency == normalizedCurrency);
+        }
+
+        if (query.MinAmount.HasValue)
+        {
+            filteredPayments = filteredPayments.Where(
+                payment => payment.Amount >= query.MinAmount.Value);
+        }
+
+        if (query.MaxAmount.HasValue)
+        {
+            filteredPayments = filteredPayments.Where(
+                payment => payment.Amount <= query.MaxAmount.Value);
+        }
+
+        if (query.FromDate.HasValue)
+        {
+            var fromDate = query.FromDate.Value.Date;
+
+            filteredPayments = filteredPayments.Where(
+                payment => payment.CreatedAtUtc >= fromDate);
+        }
+
+        if (query.ToDate.HasValue)
+        {
+            var toDateExclusive = query.ToDate.Value.Date.AddDays(1);
+
+            filteredPayments = filteredPayments.Where(
+                payment => payment.CreatedAtUtc < toDateExclusive);
+        }
+
+        return filteredPayments
+            .OrderByDescending(payment => payment.CreatedAtUtc)
+            .ToArray();
+    }
+
     public Payment? GetById(Guid id)
     {
         _payments.TryGetValue(id, out var payment);

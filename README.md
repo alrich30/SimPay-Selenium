@@ -1,151 +1,198 @@
-# SimPay — Pruebas automatizadas con Selenium
+# SimPay - Gestión de pagos y pruebas automatizadas
 
-SimPay es una aplicación web para la gestión simulada de pagos. Este repositorio contiene la aplicación, las pruebas unitarias y las pruebas automatizadas de interfaz desarrolladas con Selenium WebDriver.
-
-El proyecto fue realizado como parte de la asignación de pruebas automatizadas con Selenium.
+SimPay es una aplicación web para la gestión simulada de pagos. El repositorio contiene una API REST, una interfaz web, pruebas unitarias y pruebas funcionales automatizadas con Selenium WebDriver.
 
 ## Funcionalidades
 
-La aplicación permite realizar las siguientes operaciones:
+La aplicación permite:
 
-- Iniciar sesión mediante credenciales simuladas.
-- Registrar pagos.
-- Consultar los pagos registrados.
-- Actualizar pagos existentes.
-- Eliminar pagos.
-- Validar los datos introducidos en los formularios.
-- Mostrar mensajes de confirmación y error.
+* Iniciar sesión mediante credenciales simuladas.
+* Registrar pagos.
+* Consultar los pagos registrados.
+* Actualizar pagos existentes.
+* Eliminar pagos.
+* Filtrar pagos por estado, moneda, rango de montos y rango de fechas.
+* Combinar varios filtros en una misma consulta.
+* Visualizar estadísticas de los pagos filtrados.
+* Exportar a CSV los pagos mostrados.
+* Validar los datos introducidos.
+* Mostrar mensajes de confirmación y error.
+
+## Nuevo incremento
+
+El incremento de consultas y reportes incorpora tres funcionalidades principales.
+
+### Filtrado avanzado
+
+Los pagos pueden filtrarse mediante:
+
+* Estado: pendiente, completado o rechazado.
+* Moneda.
+* Monto mínimo.
+* Monto máximo.
+* Fecha inicial.
+* Fecha final.
+
+Los filtros pueden utilizarse individualmente o combinarse.
+
+Ejemplos:
+
+`GET /api/Payments?status=Pending`
+
+`GET /api/Payments?currency=USD`
+
+`GET /api/Payments?minAmount=100&maxAmount=2000`
+
+`GET /api/Payments?fromDate=2026-08-01&toDate=2026-08-31`
+
+`GET /api/Payments?status=Pending&currency=USD&minAmount=100`
+
+### Panel de estadísticas
+
+El panel muestra:
+
+* Total de pagos visibles.
+* Pagos pendientes.
+* Pagos completados.
+* Pagos rechazados.
+
+Las estadísticas se actualizan automáticamente según los filtros aplicados.
+
+### Exportación a CSV
+
+La aplicación permite descargar los pagos visibles en formato CSV. Si existen filtros activos, solamente se exportan los registros que cumplen esos criterios.
+
+El archivo incluye:
+
+* Identificador del pago.
+* Cuenta de origen.
+* Cuenta de destino.
+* Monto.
+* Moneda.
+* Descripción.
+* Estado.
+* Fecha de creación.
 
 ## Tecnologías utilizadas
 
-- C#
-- .NET 8
-- ASP.NET Core Web API
-- HTML
-- CSS
-- JavaScript
-- Selenium WebDriver
-- NUnit
-- ExtentReports
-- Google Chrome
-- Visual Studio 2022
+* C#
+* .NET 8
+* ASP.NET Core Web API
+* HTML
+* CSS
+* JavaScript
+* Selenium WebDriver
+* NUnit
+* ExtentReports
+* Google Chrome
+* Visual Studio 2022
 
 No se utilizó Selenium IDE para crear ni ejecutar las pruebas.
 
 ## Estructura del proyecto
 
-El repositorio está organizado en los siguientes proyectos:
-
-- `SimPay.Api`: API, interfaz web y autenticación simulada.
-- `SimPay.Application`: contratos y solicitudes de la aplicación.
-- `SimPay.Domain`: entidades y reglas del dominio.
-- `SimPay.Infrastructure`: implementación del repositorio en memoria.
-- `Simpay.Tests`: pruebas unitarias de la aplicación.
-- `SimPay.SeleniumTests`: pruebas automatizadas con Selenium.
+* `SimPay.Api`: API, interfaz web y autenticación simulada.
+* `SimPay.Application`: contratos, solicitudes y parámetros de consulta.
+* `SimPay.Domain`: entidades y reglas del dominio.
+* `SimPay.Infrastructure`: repositorio de pagos en memoria.
+* `Simpay.Tests`: pruebas unitarias.
+* `SimPay.SeleniumTests`: pruebas funcionales con Selenium.
 
 ## Credenciales de acceso
 
-Para iniciar sesión en la aplicación se utilizan las siguientes credenciales simuladas:
+Usuario: `admin`
 
-- Usuario: `admin`
-- Contraseña: `SimPay123!`
+Contraseña: `SimPay123!`
 
 Estas credenciales son exclusivamente para fines académicos y de demostración.
 
 ## Ejecución de la aplicación
 
-1. Abrir la solución `SimPay.sln` en Visual Studio 2022.
+1. Abrir `SimPay.sln` en Visual Studio 2022.
 2. Establecer `SimPay` como proyecto de inicio.
-3. Ejecutar la aplicación sin depuración mediante `Ctrl + F5`.
+3. Ejecutar mediante `Ctrl + F5`.
 4. Acceder a `https://localhost:7058/index.html`.
 
-La aplicación debe permanecer ejecutándose durante las pruebas de Selenium.
+La aplicación debe permanecer ejecutándose durante las pruebas Selenium.
 
 ## Ejecución de las pruebas
 
-1. Abrir el Explorador de pruebas de Visual Studio.
-2. Verificar que la aplicación esté disponible en `https://localhost:7058`.
-3. Seleccionar el proyecto `SimPay.SeleniumTests`.
+1. Iniciar la aplicación.
+2. Abrir el Explorador de pruebas de Visual Studio.
+3. Confirmar que SimPay esté disponible en `https://localhost:7058`.
 4. Ejecutar todas las pruebas.
 
 El proyecto contiene:
 
-- 17 pruebas unitarias.
-- 15 pruebas automatizadas con Selenium.
-- 32 pruebas en total.
+* 23 pruebas unitarias.
+* 18 pruebas funcionales con Selenium.
+* 41 pruebas automatizadas en total.
 
 ## Escenarios automatizados
 
-Se automatizaron cinco historias de usuario:
-
-1. Inicio de sesión.
-2. Registro de pagos.
-3. Consulta de pagos.
-4. Actualización de pagos.
-5. Eliminación de pagos.
-
-Cada historia contiene tres escenarios de prueba. En conjunto, las pruebas incluyen caminos felices, pruebas negativas y pruebas de límites.
-
 ### Inicio de sesión
 
-- Inicio de sesión con credenciales válidas.
-- Inicio de sesión con credenciales incorrectas.
-- Envío del formulario con los campos vacíos.
+* Inicio de sesión con credenciales válidas.
+* Inicio de sesión con credenciales incorrectas.
+* Envío del formulario con campos vacíos.
 
 ### Registro de pagos
 
-- Registro de un pago con datos válidos.
-- Intento de registro utilizando la misma cuenta de origen y destino.
-- Registro de un pago con el monto máximo permitido.
+* Registro con datos válidos.
+* Intento de registro con la misma cuenta de origen y destino.
+* Registro con el monto máximo permitido.
 
 ### Consulta de pagos
 
-- Consulta de un pago registrado.
-- Intento de acceso sin iniciar sesión.
-- Consulta de varios pagos registrados.
+* Consulta de un pago registrado.
+* Intento de acceso sin iniciar sesión.
+* Consulta de varios pagos.
 
 ### Actualización de pagos
 
-- Actualización de un pago con datos válidos.
-- Intento de actualización utilizando un monto igual a cero.
-- Actualización con una descripción de 200 caracteres.
+* Actualización con datos válidos.
+* Intento de actualización con monto igual a cero.
+* Actualización con una descripción de 200 caracteres.
 
 ### Eliminación de pagos
 
-- Eliminación confirmada de un pago.
-- Cancelación de la eliminación de un pago.
-- Eliminación de un pago con una descripción de 200 caracteres.
+* Eliminación confirmada.
+* Cancelación de la eliminación.
+* Eliminación de un pago con una descripción de 200 caracteres.
 
-## Reporte HTML y capturas
+### Consultas y reportes
 
-El reporte HTML generado por ExtentReports se encuentra en:
+* Filtrado de pagos por moneda.
+* Actualización de las estadísticas mediante filtros.
+* Exportación de pagos filtrados a CSV.
+
+## Reporte y capturas
+
+El reporte generado por ExtentReports se encuentra en:
 
 `Simpay.Tests/SimPay.SeleniumTests/TestArtifacts/SeleniumReport.html`
 
-Las capturas automáticas de cada escenario se encuentran en:
+Las capturas automáticas se almacenan en:
 
 `Simpay.Tests/SimPay.SeleniumTests/TestArtifacts/Screenshots`
 
-Cada prueba genera automáticamente una captura de pantalla al finalizar. Las capturas también aparecen asociadas a sus respectivos escenarios dentro del reporte HTML.
+## Resultado final
 
-## Resultado de la ejecución
-
-La ejecución final produjo los siguientes resultados:
-
-- 17 pruebas unitarias superadas.
-- 15 pruebas Selenium superadas.
-- 32 pruebas superadas.
-- 0 pruebas fallidas.
-- 0 pruebas omitidas.
+* 23 pruebas unitarias superadas.
+* 18 pruebas Selenium superadas.
+* 41 pruebas superadas.
+* 0 pruebas fallidas.
+* 0 pruebas omitidas.
 
 ## Consideraciones
 
-- La aplicación debe estar ejecutándose antes de iniciar las pruebas Selenium.
-- Las pruebas utilizan Google Chrome.
-- El certificado HTTPS local es aceptado por la configuración de ChromeDriver.
-- Las pruebas se ejecutan de forma no paralela para evitar interferencias entre escenarios.
-- El repositorio utiliza datos almacenados temporalmente en memoria.
-- Los datos se reinician cuando se detiene y vuelve a iniciar la aplicación.
+* Las pruebas Selenium requieren que SimPay esté ejecutándose.
+* Las pruebas utilizan Google Chrome.
+* ChromeDriver acepta el certificado HTTPS local.
+* Las pruebas se ejecutan de forma no paralela.
+* Los pagos se almacenan temporalmente en memoria.
+* Los datos se reinician al detener la aplicación.
+* Las descargas CSV de las pruebas se guardan en carpetas temporales y se eliminan al finalizar.
 
 ## Autor
 

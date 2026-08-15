@@ -6,6 +6,7 @@ public interface IPaymentRepository
 {
     Payment Add(Payment payment);
     IReadOnlyCollection<Payment> GetAll();
+    IReadOnlyCollection<Payment> Search(PaymentQuery query);
     Payment? GetById(Guid id);
     bool Delete(Guid id);
 

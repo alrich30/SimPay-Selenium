@@ -21,6 +21,23 @@ const cancelButton = document.getElementById("cancel-button");
 const refreshButton = document.getElementById("refresh-button");
 const logoutButton = document.getElementById("logout-button");
 
+const filterForm = document.getElementById("filter-form");
+const filterStatus = document.getElementById("filter-status");
+const filterCurrency = document.getElementById("filter-currency");
+const filterMinAmount = document.getElementById("filter-min-amount");
+const filterMaxAmount = document.getElementById("filter-max-amount");
+const filterFromDate = document.getElementById("filter-from-date");
+const filterToDate = document.getElementById("filter-to-date");
+const filterMessage = document.getElementById("filter-message");
+const clearFiltersButton = document.getElementById("clear-filters-button");
+
+const totalPayments = document.getElementById("total-payments");
+const pendingPayments = document.getElementById("pending-payments");
+const completedPayments = document.getElementById("completed-payments");
+const rejectedPayments = document.getElementById("rejected-payments");
+
+const exportCsvButton = document.getElementById("export-csv-button");
+
 let payments = [];
 
 let messageTimer;
@@ -33,12 +50,15 @@ refreshButton.addEventListener("click", () => {
     loadPayments();
 });
 logoutButton.addEventListener("click", logout);
+filterForm.addEventListener("submit", applyFilters);
+clearFiltersButton.addEventListener("click", clearFilters);
+exportCsvButton.addEventListener("click", exportPaymentsToCsv);
 
 async function loadPayments() {
-    //clearMessage();
+    clearFilterMessage();
 
     try {
-        const response = await fetch("/api/Payments");
+        const response = await fetch(buildPaymentsUrl());
 
         if (!response.ok) {
             throw new Error(await getErrorMessage(response));
@@ -47,8 +67,92 @@ async function loadPayments() {
         payments = await response.json();
         renderPayments();
     } catch (error) {
-        showMessage(error.message, "error");
+        showFilterMessage(error.message, "error");
     }
+}
+
+function buildPaymentsUrl() {
+    const parameters = new URLSearchParams();
+
+    if (filterStatus.value) {
+        parameters.set("status", filterStatus.value);
+    }
+
+    if (filterCurrency.value.trim()) {
+        parameters.set(
+            "currency",
+            filterCurrency.value.trim().toUpperCase()
+        );
+    }
+
+    if (filterMinAmount.value) {
+        parameters.set("minAmount", filterMinAmount.value);
+    }
+
+    if (filterMaxAmount.value) {
+        parameters.set("maxAmount", filterMaxAmount.value);
+    }
+
+    if (filterFromDate.value) {
+        parameters.set("fromDate", filterFromDate.value);
+    }
+
+    if (filterToDate.value) {
+        parameters.set("toDate", filterToDate.value);
+    }
+
+    const queryString = parameters.toString();
+
+    return queryString
+        ? `/api/Payments?${queryString}`
+        : "/api/Payments";
+}
+
+function applyFilters(event) {
+    event.preventDefault();
+
+    const minAmount = Number(filterMinAmount.value);
+    const maxAmount = Number(filterMaxAmount.value);
+
+    if (filterMinAmount.value &&
+        filterMaxAmount.value &&
+        minAmount > maxAmount) {
+        showFilterMessage(
+            "El monto mínimo no puede superar el monto máximo.",
+            "error"
+        );
+
+        return;
+    }
+
+    if (filterFromDate.value &&
+        filterToDate.value &&
+        filterFromDate.value > filterToDate.value) {
+        showFilterMessage(
+            "La fecha inicial no puede ser posterior a la fecha final.",
+            "error"
+        );
+
+        return;
+    }
+
+    loadPayments();
+}
+
+function clearFilters() {
+    filterForm.reset();
+    clearFilterMessage();
+    loadPayments();
+}
+
+function showFilterMessage(text, type) {
+    filterMessage.textContent = text;
+    filterMessage.className = `message ${type}`;
+}
+
+function clearFilterMessage() {
+    filterMessage.textContent = "";
+    filterMessage.className = "message";
 }
 
 async function savePayment(event) {
@@ -114,6 +218,9 @@ function renderPayments() {
     paymentsBody.replaceChildren();
     emptyMessage.classList.toggle("hidden", payments.length > 0);
 
+    updateStatistics();
+    exportCsvButton.disabled = payments.length === 0;
+
     for (const payment of payments) {
         const row = document.createElement("tr");
         row.dataset.paymentId = payment.id;
@@ -151,6 +258,92 @@ function renderPayments() {
         row.appendChild(actionsCell);
         paymentsBody.appendChild(row);
     }
+}
+
+function exportPaymentsToCsv() {
+    if (payments.length === 0) {
+        showFilterMessage(
+            "No existen pagos para exportar.",
+            "error"
+        );
+
+        return;
+    }
+
+    const headers = [
+        "Id",
+        "Cuenta de origen",
+        "Cuenta de destino",
+        "Monto",
+        "Moneda",
+        "Descripción",
+        "Estado",
+        "Fecha de creación"
+    ];
+
+    const rows = payments.map(payment => [
+        payment.id,
+        payment.sourceAccountId,
+        payment.destinationAccountId,
+        payment.amount,
+        payment.currency,
+        payment.description ?? "",
+        getStatusName(payment.status),
+        payment.createdAtUtc
+    ]);
+
+    const csvContent = [headers, ...rows]
+        .map(row => row.map(escapeCsvValue).join(","))
+        .join("\r\n");
+
+    const blob = new Blob(
+        ["\uFEFF", csvContent],
+        { type: "text/csv;charset=utf-8;" }
+    );
+
+    const url = URL.createObjectURL(blob);
+    const downloadLink = document.createElement("a");
+    const currentDate = new Date().toISOString().slice(0, 10);
+
+    downloadLink.href = url;
+    downloadLink.download = `simpay-pagos-${currentDate}.csv`;
+
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    downloadLink.remove();
+
+    URL.revokeObjectURL(url);
+
+    showFilterMessage(
+        `Se exportaron ${payments.length} pagos correctamente.`,
+        "success"
+    );
+}
+
+function escapeCsvValue(value) {
+    let text = String(value ?? "");
+
+    if (/^[=+\-@]/.test(text)) {
+        text = `'${text}`;
+    }
+
+    return `"${text.replaceAll('"', '""')}"`;
+}
+
+function updateStatistics() {
+    totalPayments.textContent = payments.length;
+
+    pendingPayments.textContent = payments.filter(
+        payment => payment.status === 0
+    ).length;
+
+    completedPayments.textContent = payments.filter(
+        payment => payment.status === 1
+    ).length;
+
+    rejectedPayments.textContent = payments.filter(
+        payment => payment.status === 2
+    ).length;
 }
 
 function editPayment(payment) {

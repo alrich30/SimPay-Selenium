@@ -37,14 +37,26 @@ public sealed class PaymentsPage
     private IWebElement SaveButton =>
         _driver.FindElement(By.Id("save-button"));
 
-    private IWebElement PaymentMessage =>
-        _driver.FindElement(By.Id("payment-message"));
-
     private IWebElement PaymentsBody =>
         _driver.FindElement(By.Id("payments-body"));
 
     private IWebElement RefreshButton =>
     _driver.FindElement(By.Id("refresh-button"));
+
+    private IWebElement FilterCurrencyInput =>
+    _driver.FindElement(By.Id("filter-currency"));
+
+    private IWebElement ApplyFiltersButton =>
+        _driver.FindElement(By.Id("apply-filters-button"));
+
+    private IWebElement ClearFiltersButton =>
+        _driver.FindElement(By.Id("clear-filters-button"));
+
+    private IWebElement PendingPayments =>
+        _driver.FindElement(By.Id("pending-payments"));
+
+    private IWebElement ExportCsvButton =>
+        _driver.FindElement(By.Id("export-csv-button"));
 
     public void Open()
     {
@@ -215,6 +227,62 @@ public sealed class PaymentsPage
             {
                 return null;
             }
+        })!;
+    }
+
+    public void ApplyCurrencyFilter(string currency)
+    {
+        FilterCurrencyInput.Clear();
+        FilterCurrencyInput.SendKeys(currency);
+        ApplyFiltersButton.Click();
+    }
+
+    public void ClearFilters()
+    {
+        ClearFiltersButton.Click();
+    }
+
+    public int WaitForTotalPayments(int expectedTotal)
+    {
+        _wait.Until(driver =>
+        {
+            string text = driver
+                .FindElement(By.Id("total-payments"))
+                .Text;
+
+            return int.TryParse(text, out int total) &&
+                   total == expectedTotal;
+        });
+
+        return expectedTotal;
+    }
+
+    public int GetPendingPayments()
+    {
+        return int.Parse(PendingPayments.Text);
+    }
+
+    public void ExportCsv()
+    {
+        ExportCsvButton.Click();
+    }
+
+    public bool IsExportEnabled()
+    {
+        return ExportCsvButton.Enabled;
+    }
+
+    public string WaitForFilterMessage()
+    {
+        return _wait.Until(driver =>
+        {
+            string text = driver
+                .FindElement(By.Id("filter-message"))
+                .Text;
+
+            return string.IsNullOrWhiteSpace(text)
+                ? null
+                : text;
         })!;
     }
 }
